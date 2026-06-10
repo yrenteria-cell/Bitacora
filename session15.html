@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sesión 15 · Compositores de la UNAL — Bitácora Musical</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root { --session-color: var(--s15-color); }
+    .reflection-block::after { background: var(--s15-color); }
+    .session-number-badge { background: var(--s15-color); }
+
+    .hero-visual {
+      position: absolute; right: 5%; top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none; z-index: 1;
+      opacity: 0.05; font-size: 16rem;
+      line-height: 1; font-family: serif; color: var(--s15-color);
+    }
+    .hero-staff {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: flex; flex-direction: column; gap: 9px;
+      padding: 0 0 var(--sp-lg);
+      pointer-events: none; z-index: 0; opacity: 0.06;
+    }
+    .hero-staff span { display: block; height: 1px; background: var(--ink); }
+
+    .clipping {
+      background: var(--paper); box-shadow: var(--shadow-paper);
+      padding: var(--sp-lg); position: relative;
+      border-left: 3px solid var(--s15-color);
+    }
+    .clipping::before {
+      content: ''; position: absolute; top: -9px; left: 30px;
+      width: 55px; height: 18px; background: var(--tape);
+      transform: rotate(-1.5deg);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.07);
+    }
+    .dato-highlight {
+      display: inline-block;
+      background: rgba(26, 88, 85, 0.07);
+      border-left: 2px solid var(--s15-color);
+      padding: var(--sp-sm) var(--sp-md);
+      font-family: var(--font-elegant); font-style: italic;
+      font-size: 1.05rem; color: var(--s15-color);
+      margin: var(--sp-md) 0; line-height: 1.5;
+    }
+    .deco-composition {
+      height: 220px;
+      background: linear-gradient(135deg, #e8f4f4 0%, #d5eeec 50%, #c0e4e2 100%);
+      position: relative; overflow: hidden; box-shadow: var(--shadow-paper);
+    }
+    .deco-composition::before {
+      content: '🎼'; position: absolute; font-size: 6rem;
+      top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;
+    }
+    .deco-composition-circle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,88,85,0.15) 0%, transparent 70%);
+    }
+    .deco-composition-circle:nth-child(1) { width: 300px; height: 300px; top: -100px; right: -80px; }
+    .deco-composition-circle:nth-child(2) { width: 150px; height: 150px; bottom: -40px; left: 20px; }
+    .deco-text-overlay {
+      position: absolute; bottom: var(--sp-md); left: var(--sp-md); right: var(--sp-md);
+      font-family: var(--font-fell); font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--s15-color); opacity: 0.5;
+    }
+
+    /* Obras presentadas */
+    .works-list {
+      display: flex; flex-direction: column; gap: var(--sp-md);
+    }
+
+    .work-item {
+      background: var(--paper); box-shadow: var(--shadow-xs);
+      padding: var(--sp-md) var(--sp-lg);
+      border-left: 4px solid var(--s15-color);
+      position: relative; overflow: hidden;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+    .work-item:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .work-composer {
+      font-family: var(--font-fell); font-size: 0.7rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--s15-color); margin-bottom: 0.2em;
+    }
+
+    .work-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1rem; color: var(--ink); margin-bottom: 0.25em;
+    }
+
+    .work-desc {
+      font-family: var(--font-text); font-size: 0.86rem;
+      color: var(--ink-mid); line-height: 1.5;
+    }
+
+    .work-tag {
+      display: inline-block;
+      font-family: var(--font-fell); font-size: 0.65rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: rgba(26,88,85,0.08); color: var(--s15-color);
+      padding: 2px 8px; border-radius: 2px;
+      margin-top: var(--sp-xs);
+    }
+
+    /* Influencias / constelación */
+    .influences-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--sp-md);
+    }
+
+    .influence-chip {
+      background: var(--paper); box-shadow: var(--shadow-xs);
+      padding: var(--sp-md);
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: var(--sp-sm);
+      transition: transform 0.3s var(--ease-out);
+    }
+    .influence-chip:hover { transform: translateY(-3px); }
+
+    .influence-icon { font-size: 2rem; }
+    .influence-name {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.9rem; color: var(--ink);
+    }
+    .influence-desc {
+      font-family: var(--font-text); font-size: 0.8rem;
+      color: var(--ink-light); line-height: 1.45;
+    }
+
+    .pull-quote {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--s15-color);
+      line-height: 1.55; padding: var(--sp-lg) var(--sp-xl);
+      border-top: 1px solid rgba(26,88,85,0.15);
+      border-bottom: 1px solid rgba(26,88,85,0.15);
+      margin: var(--sp-lg) 0; position: relative;
+    }
+    .pull-quote::before {
+      content: '"'; position: absolute; top: -0.3em; left: var(--sp-md);
+      font-size: 4rem; color: var(--s15-color); opacity: 0.15;
+      font-family: var(--font-display); line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav class="session-nav" aria-label="Navegación de sesión">
+    <a href="../index.html" class="nav-back">
+      <span class="nav-back-arrow" aria-hidden="true">←</span>
+      Bitácora Musical
+    </a>
+    <span class="nav-center" aria-hidden="true">♩ Apreciación Musical · UNAL 2025 ♩</span>
+    <div class="nav-pagination">
+      <a href="session14.html">← Anterior</a>
+      <span style="opacity:0.4">Siguiente</span>
+    </div>
+  </nav>
+
+  <header class="session-hero">
+    <span class="hero-visual" aria-hidden="true">🎼</span>
+    <div class="hero-staff" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="session-hero-inner">
+      <div class="session-badge anim-fade-up">
+        <div class="session-number-badge" aria-hidden="true">15</div>
+        <span class="session-label-text">Sesión · 9 de Junio</span>
+      </div>
+      <h1 class="session-title anim-fade-up anim-delay-1">
+        Compositores de la UNAL:
+        <span class="session-title-accent">Innovación y Memoria</span>
+      </h1>
+      <div class="session-date-line anim-fade-up anim-delay-2">
+        <span class="session-date-stamp">9 de Junio, 2025</span>
+        <span class="date-rule"></span>
+        <span class="session-ornament" aria-hidden="true">♩ ♪ ♫</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="session-content">
+
+    <div class="content-cols reveal">
+      <div>
+        <div class="clipping mb-lg">
+          <p class="section-label">Contexto Histórico</p>
+          <p>En la <strong>Biblioteca Luis Ángel Arango</strong>, se presentaron obras nuevas de profesores y estudiantes de la UNAL. <strong>Santiago Luna</strong> presentó la Opereta <em>Chitsune</em>.</p>
+          <div class="dato-highlight">
+            Chitsune rompe esquemas al incluir animación 3D, temática de inteligencia artificial y cultura geek-otaku dentro de un formato operístico tradicional.
+          </div>
+          <p>En la investigación, se explicó que el <strong>Prototipo</strong> es la materialización de una idea en la vida real. Musicalmente, se exploró la <em>música programática</em>, donde la obra narra una historia específica.</p>
+        </div>
+
+        <div class="aspects-block">
+          <p class="section-label">Aspectos del Concierto</p>
+          <ul class="aspect-list">
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Biblioteca Luis Ángel Arango, Bogotá</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Opereta <em>Chitsune</em> — Santiago Luna</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Animación 3D e inteligencia artificial</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Rap integrado en estructura operística</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> <em>Uri Lullaby</em> — melodías coreanas tradicionales</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Registros extremos del piano (Debussy)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="deco-composition mb-lg">
+          <div class="deco-composition-circle"></div>
+          <div class="deco-composition-circle"></div>
+          <span class="deco-text-overlay">Luis Ángel Arango · UNAL · Composición Viva</span>
+        </div>
+
+        <div class="clipping">
+          <p class="section-label">Obras Presentadas</p>
+          <div class="works-list">
+            <div class="work-item">
+              <p class="work-composer">Santiago Luna</p>
+              <p class="work-title">Opereta Chitsune</p>
+              <p class="work-desc">Fusión de ópera, rap, animación 3D e inteligencia artificial. Cultura digital y música académica en un solo lenguaje.</p>
+              <span class="work-tag">Opereta · Digital · IA</span>
+            </div>
+            <div class="work-item">
+              <p class="work-composer">Esteban Espitia</p>
+              <p class="work-title">Sobo to Watashi</p>
+              <p class="work-desc">«Mi abuela y yo» — Música programática de carácter íntimo. Narra una historia personal con piano solista.</p>
+              <span class="work-tag">Programática · Piano</span>
+            </div>
+            <div class="work-item">
+              <p class="work-composer">Moisés Bertrán</p>
+              <p class="work-title">Uri Lullaby</p>
+              <p class="work-desc">Basada en melodías tradicionales coreanas. Usa registros extremos del piano para crear planos sonoros à la Debussy.</p>
+              <span class="work-tag">Tradicional · Coreano</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Influencias / constelación -->
+    <div class="full-section reveal">
+      <p class="section-label mb-md">Constelación de Influencias</p>
+      <div class="influences-grid">
+        <div class="influence-chip">
+          <span class="influence-icon" aria-hidden="true">🎹</span>
+          <p class="influence-name">Debussy</p>
+          <p class="influence-desc">Planos sonoros, ambigüedad tonal, uso del pedal como atmósfera</p>
+        </div>
+        <div class="influence-chip">
+          <span class="influence-icon" aria-hidden="true">🎌</span>
+          <p class="influence-name">Tradición Coreana</p>
+          <p class="influence-desc">Escalas pentatónicas, melodías de cuna, identidad cultural asiática</p>
+        </div>
+        <div class="influence-chip">
+          <span class="influence-icon" aria-hidden="true">🤖</span>
+          <p class="influence-name">Cultura Digital</p>
+          <p class="influence-desc">IA, animación 3D, cultura otaku como material dramático</p>
+        </div>
+        <div class="influence-chip">
+          <span class="influence-icon" aria-hidden="true">🎤</span>
+          <p class="influence-name">Hip-Hop / Rap</p>
+          <p class="influence-desc">Ritmo hablado y síncopa urbana integrados en estructura operística</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-section reveal">
+      <p class="section-label mb-md">Conceptos Musicales</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--sp-md);">
+        <div class="concept-note">
+          <p class="concept-term">Música Programática</p>
+          <p class="concept-def">Composición instrumental que narra una historia, describe un lugar o evoca emociones específicas. La música como relato.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Prototipo</p>
+          <p class="concept-def">En investigación musical: primera materialización de una idea creativa para ser evaluada y mejorada. La composición como proceso de diseño.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Narrativa Musical</p>
+          <p class="concept-def">Estructura donde los elementos musicales (motivos, tonalidades, timbres) funcionan como personajes y acciones dentro de un arco dramático.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Fusión Contemporánea</p>
+          <p class="concept-def">Integración de géneros musicales de distintas culturas y épocas dentro de una obra original. La UNAL como laboratorio de síntesis.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reflection-block reveal">
+      <div class="reflection-inner">
+        <span class="reflection-quote-mark" aria-hidden="true">"</span>
+        <p class="reflection-label">Reflexión Personal</p>
+        <blockquote class="reflection-text">
+          Esta sesión me demostró que la composición actual en la UNAL está viva y es diversa. Me impactó cómo Santiago Luna usa elementos de la «cultura de internet» para atraer a nuevas generaciones a la música académica.
+        </blockquote>
+        <div class="pull-quote" style="margin-top: var(--sp-lg);">
+          Me impactó cómo la música académica actual puede dialogar con la cultura digital y atraer nuevas generaciones. La UNAL no conserva el pasado: lo transforma, lo cuestiona y lo reinventa.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-note">Sesión 15 · 9 de Junio · Bitácora Musical UNAL 2025</p>
+    <p class="footer-note" style="margin-top: 0.4em; font-size: 0.78rem; opacity: 0.5;">Sesión final · Fin de la bitácora 2025</p>
+    <div class="footer-ornament" aria-hidden="true">♩ ♪ ♫</div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

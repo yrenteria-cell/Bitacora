@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sesión 4 · Fusión de Raíces — Bitácora Musical</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root { --session-color: var(--s4-color); }
+    .reflection-block::after { background: var(--s4-color); }
+    .session-number-badge { background: var(--s4-color); }
+
+    .hero-visual {
+      position: absolute; right: 5%; top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none; z-index: 1;
+      opacity: 0.055; font-size: 16rem;
+      line-height: 1; font-family: serif; color: var(--s4-color);
+    }
+    .hero-staff {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: flex; flex-direction: column; gap: 9px;
+      padding: 0 0 var(--sp-lg);
+      pointer-events: none; z-index: 0; opacity: 0.06;
+    }
+    .hero-staff span { display: block; height: 1px; background: var(--ink); }
+
+    .clipping {
+      background: var(--paper); box-shadow: var(--shadow-paper);
+      padding: var(--sp-lg); position: relative;
+      border-left: 3px solid var(--s4-color);
+    }
+    .clipping::before {
+      content: ''; position: absolute; top: -9px; left: 30px;
+      width: 55px; height: 18px; background: var(--tape);
+      transform: rotate(-1.5deg);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.07);
+    }
+    .dato-highlight {
+      display: inline-block;
+      background: rgba(184,116,30,0.08);
+      border-left: 2px solid var(--s4-color);
+      padding: var(--sp-sm) var(--sp-md);
+      font-family: var(--font-elegant); font-style: italic;
+      font-size: 1.05rem; color: var(--s4-color);
+      margin: var(--sp-md) 0; line-height: 1.5;
+    }
+    .deco-composition {
+      height: 220px;
+      background: linear-gradient(135deg, #f9f0e0 0%, #f4e5c5 50%, #eeddb0 100%);
+      position: relative; overflow: hidden; box-shadow: var(--shadow-paper);
+    }
+    .deco-composition::before {
+      content: '🪗'; position: absolute; font-size: 6rem;
+      top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.22;
+    }
+    .deco-composition-circle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,116,30,0.18) 0%, transparent 70%);
+    }
+    .deco-composition-circle:nth-child(1) { width: 300px; height: 300px; top: -100px; right: -80px; }
+    .deco-composition-circle:nth-child(2) { width: 150px; height: 150px; bottom: -40px; left: 20px; }
+    .deco-text-overlay {
+      position: absolute; bottom: var(--sp-md); left: var(--sp-md); right: var(--sp-md);
+      font-family: var(--font-fell); font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--s4-color); opacity: 0.55;
+    }
+
+    /* Línea de tiempo del repertorio */
+    .repertoire-timeline {
+      display: flex; flex-direction: column; gap: var(--sp-md);
+      position: relative; padding-left: var(--sp-xl);
+    }
+    .repertoire-timeline::before {
+      content: ''; position: absolute; left: 12px; top: 8px; bottom: 8px;
+      width: 1px; background: rgba(184,116,30,0.25);
+    }
+    .timeline-item { position: relative; }
+    .timeline-dot {
+      position: absolute; left: calc(-1 * var(--sp-xl) + 8px); top: 6px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--s4-color); border: 2px solid var(--paper);
+      box-shadow: 0 0 0 2px rgba(184,116,30,0.3);
+    }
+    .timeline-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.95rem; color: var(--ink); margin-bottom: 0.2em;
+    }
+    .timeline-desc {
+      font-family: var(--font-text); font-size: 0.88rem;
+      color: var(--ink-mid); line-height: 1.5;
+    }
+
+    .pull-quote {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--s4-color);
+      line-height: 1.55; padding: var(--sp-lg) var(--sp-xl);
+      border-top: 1px solid rgba(184,116,30,0.2);
+      border-bottom: 1px solid rgba(184,116,30,0.2);
+      margin: var(--sp-lg) 0; position: relative;
+    }
+    .pull-quote::before {
+      content: '"'; position: absolute; top: -0.3em; left: var(--sp-md);
+      font-size: 4rem; color: var(--s4-color); opacity: 0.15;
+      font-family: var(--font-display); line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav class="session-nav" aria-label="Navegación de sesión">
+    <a href="../index.html" class="nav-back">
+      <span class="nav-back-arrow" aria-hidden="true">←</span>
+      Bitácora Musical
+    </a>
+    <span class="nav-center" aria-hidden="true">♩ Apreciación Musical · UNAL 2025 ♩</span>
+    <div class="nav-pagination">
+      <a href="session3.html">← Anterior</a>
+      <span>·</span>
+      <a href="session7.html">Siguiente →</a>
+    </div>
+  </nav>
+
+  <header class="session-hero">
+    <span class="hero-visual" aria-hidden="true">🪗</span>
+    <div class="hero-staff" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="session-hero-inner">
+      <div class="session-badge anim-fade-up">
+        <div class="session-number-badge" aria-hidden="true">4</div>
+        <span class="session-label-text">Sesión · 24 de Febrero</span>
+      </div>
+      <h1 class="session-title anim-fade-up anim-delay-1">
+        Fusión de Raíces:
+        <span class="session-title-accent">De Mozart al Vallenato</span>
+      </h1>
+      <div class="session-date-line anim-fade-up anim-delay-2">
+        <span class="session-date-stamp">24 de Febrero, 2025</span>
+        <span class="date-rule"></span>
+        <span class="session-ornament" aria-hidden="true">♩ ♪ ♫</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="session-content">
+
+    <div class="content-cols reveal">
+      <div>
+        <div class="clipping mb-lg">
+          <p class="section-label">Contexto Histórico</p>
+          <p>En una colaboración inédita, el <strong>Ensamble Alborada</strong> (estudiantes de la UNAL) se unió a la <strong>Filarmónica del César</strong> en Valledupar.</p>
+          <div class="dato-highlight">
+            Se interpretó la <em>Sinfonía n.º 25 de Mozart</em>, escrita cuando el compositor tenía solo 17 años y ya sumaba 183 obras en su catálogo.
+          </div>
+          <p>El repertorio viajó desde el clasicismo europeo hasta el «Vallenato Sinfónico», integrando acordeón y caja con cuerdas orquestales.</p>
+        </div>
+
+        <div class="aspects-block">
+          <p class="section-label">Aspectos del Concierto</p>
+          <ul class="aspect-list">
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Ensamble Alborada + Filarmónica del César</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Sinfonía n.º 25 de Mozart (1773)</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> <em>Nació mi poesía</em> — Vallenato Sinfónico</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> <em>La Piragua</em> — con acordeón y caja</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Técnicas extendidas en cuerdas</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Fusión clásico-popular con rigor académico</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="deco-composition mb-lg">
+          <div class="deco-composition-circle"></div>
+          <div class="deco-composition-circle"></div>
+          <span class="deco-text-overlay">Valledupar · Vallenato Sinfónico · Mozart</span>
+        </div>
+
+        <div class="clipping">
+          <p class="section-label">Repertorio del Viaje</p>
+          <div class="repertoire-timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <p class="timeline-title">Sinfonía n.º 25 — Mozart</p>
+              <p class="timeline-desc">Clasicismo vienés puro. Mozart, 17 años, primer movimiento en sol menor con tensión dramática inusual.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <p class="timeline-title">Nació mi poesía</p>
+              <p class="timeline-desc">Pieza vallenata integrada al lenguaje orquestal de cuerdas. El acordeón como voz solista principal.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <p class="timeline-title">La Piragua — José Barros</p>
+              <p class="timeline-desc">Ícono de la música colombiana orquestado para ensamble sinfónico con percusión tradicional.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-section reveal">
+      <p class="section-label mb-md">Conceptos Musicales</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--sp-md);">
+        <div class="concept-note">
+          <p class="concept-term">Técnicas Extendidas</p>
+          <p class="concept-def">Recursos no convencionales en un instrumento. Ej: golpear la caja del violín con el arco para emular percusión tradicional.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Vallenato Sinfónico</p>
+          <p class="concept-def">Fusión donde acordeón, caja y guacharaca dialogan con orquesta de cuerdas dentro de estructuras sinfónicas formales.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Música de Fusión</p>
+          <p class="concept-def">Integración de dos o más tradiciones musicales distintas manteniendo la identidad de cada una mientras crean un nuevo lenguaje.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Sinfonía Clásica</p>
+          <p class="concept-def">Forma musical en cuatro movimientos para orquesta, desarrollada en el siglo XVIII con Haydn, Mozart y el joven Beethoven.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reflection-block reveal">
+      <div class="reflection-inner">
+        <span class="reflection-quote-mark" aria-hidden="true">"</span>
+        <p class="reflection-label">Reflexión Personal</p>
+        <blockquote class="reflection-text">
+          Esta sesión rompió la frontera entre lo académico y lo popular. Entendí que un bambuco o un porro tienen el mismo nivel de complejidad técnica que una sinfonía de Mozart si se ejecutan con rigor profesional.
+        </blockquote>
+        <div class="pull-quote" style="margin-top: var(--sp-lg);">
+          Entendí que un bambuco o un porro pueden tener la misma complejidad artística que una sinfonía clásica. La excelencia no pertenece a ninguna tradición: es una actitud ante la música.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-note">Sesión 4 · 24 de Febrero · Bitácora Musical UNAL 2025</p>
+    <div class="footer-ornament" aria-hidden="true">♩ ♪ ♫</div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

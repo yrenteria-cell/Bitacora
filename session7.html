@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sesión 7 · Articulaciones y Sonidos del Pacífico — Bitácora Musical</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root { --session-color: var(--s7-color); }
+    .reflection-block::after { background: var(--s7-color); }
+    .session-number-badge { background: var(--s7-color); }
+
+    .hero-visual {
+      position: absolute; right: 5%; top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none; z-index: 1;
+      opacity: 0.055; font-size: 16rem;
+      line-height: 1; font-family: serif; color: var(--s7-color);
+    }
+    .hero-staff {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: flex; flex-direction: column; gap: 9px;
+      padding: 0 0 var(--sp-lg);
+      pointer-events: none; z-index: 0; opacity: 0.06;
+    }
+    .hero-staff span { display: block; height: 1px; background: var(--ink); }
+
+    .clipping {
+      background: var(--paper); box-shadow: var(--shadow-paper);
+      padding: var(--sp-lg); position: relative;
+      border-left: 3px solid var(--s7-color);
+    }
+    .clipping::before {
+      content: ''; position: absolute; top: -9px; left: 30px;
+      width: 55px; height: 18px; background: var(--tape);
+      transform: rotate(-1.5deg);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.07);
+    }
+    .dato-highlight {
+      display: inline-block;
+      background: rgba(26, 61, 92, 0.07);
+      border-left: 2px solid var(--s7-color);
+      padding: var(--sp-sm) var(--sp-md);
+      font-family: var(--font-elegant); font-style: italic;
+      font-size: 1.05rem; color: var(--s7-color);
+      margin: var(--sp-md) 0; line-height: 1.5;
+    }
+    .deco-composition {
+      height: 220px;
+      background: linear-gradient(135deg, #e5edf5 0%, #d8e8f5 50%, #c8ddf0 100%);
+      position: relative; overflow: hidden; box-shadow: var(--shadow-paper);
+    }
+    .deco-composition::before {
+      content: '🥁'; position: absolute; font-size: 6rem;
+      top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.22;
+    }
+    .deco-composition-circle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,61,92,0.15) 0%, transparent 70%);
+    }
+    .deco-composition-circle:nth-child(1) { width: 300px; height: 300px; top: -100px; right: -80px; }
+    .deco-composition-circle:nth-child(2) { width: 150px; height: 150px; bottom: -40px; left: 20px; }
+    .deco-text-overlay {
+      position: absolute; bottom: var(--sp-md); left: var(--sp-md); right: var(--sp-md);
+      font-family: var(--font-fell); font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--s7-color); opacity: 0.55;
+    }
+
+    /* Grid de articulaciones */
+    .articulations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-md);
+    }
+
+    .articulation-card {
+      background: var(--paper); box-shadow: var(--shadow-xs);
+      padding: var(--sp-md);
+      border-top: 3px solid var(--s7-color);
+      position: relative;
+    }
+
+    .articulation-name {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1.05rem; color: var(--s7-color); margin-bottom: 0.25em;
+    }
+
+    .articulation-symbol {
+      font-family: var(--font-fell); font-style: italic;
+      font-size: 0.78rem; color: var(--ink-light);
+      margin-bottom: 0.4em; letter-spacing: 0.08em;
+    }
+
+    .articulation-def {
+      font-family: var(--font-text); font-size: 0.86rem;
+      color: var(--ink-mid); line-height: 1.55;
+    }
+
+    .pull-quote {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--s7-color);
+      line-height: 1.55; padding: var(--sp-lg) var(--sp-xl);
+      border-top: 1px solid rgba(26,61,92,0.15);
+      border-bottom: 1px solid rgba(26,61,92,0.15);
+      margin: var(--sp-lg) 0; position: relative;
+    }
+    .pull-quote::before {
+      content: '"'; position: absolute; top: -0.3em; left: var(--sp-md);
+      font-size: 4rem; color: var(--s7-color); opacity: 0.15;
+      font-family: var(--font-display); line-height: 1;
+    }
+
+    /* Ritmo polirrítmico visual */
+    .rhythm-visual {
+      background: var(--paper); box-shadow: var(--shadow-paper);
+      padding: var(--sp-lg); position: relative;
+    }
+    .rhythm-visual::before {
+      content: ''; position: absolute; top: -9px; right: 40px;
+      width: 55px; height: 18px; background: var(--tape);
+      transform: rotate(1deg);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.07);
+    }
+
+    .rhythm-row {
+      display: flex; align-items: center; gap: var(--sp-md);
+      margin-bottom: var(--sp-md); padding-bottom: var(--sp-md);
+      border-bottom: 1px dotted rgba(74,55,40,0.15);
+    }
+    .rhythm-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .rhythm-label {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.9rem; color: var(--s7-color);
+      min-width: 3rem;
+    }
+
+    .rhythm-beats {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+
+    .beat {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-family: var(--font-fell);
+    }
+
+    .beat-strong {
+      background: var(--s7-color); color: white;
+    }
+    .beat-weak {
+      background: rgba(26,61,92,0.12);
+      color: var(--s7-color);
+    }
+
+    .rhythm-name {
+      font-family: var(--font-text); font-size: 0.85rem;
+      color: var(--ink-mid); font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav class="session-nav" aria-label="Navegación de sesión">
+    <a href="../index.html" class="nav-back">
+      <span class="nav-back-arrow" aria-hidden="true">←</span>
+      Bitácora Musical
+    </a>
+    <span class="nav-center" aria-hidden="true">♩ Apreciación Musical · UNAL 2025 ♩</span>
+    <div class="nav-pagination">
+      <a href="session4.html">← Anterior</a>
+      <span>·</span>
+      <a href="session8.html">Siguiente →</a>
+    </div>
+  </nav>
+
+  <header class="session-hero">
+    <span class="hero-visual" aria-hidden="true">🥁</span>
+    <div class="hero-staff" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="session-hero-inner">
+      <div class="session-badge anim-fade-up">
+        <div class="session-number-badge" aria-hidden="true">7</div>
+        <span class="session-label-text">Sesión · 14 de Abril</span>
+      </div>
+      <h1 class="session-title anim-fade-up anim-delay-1">
+        Articulaciones y
+        <span class="session-title-accent">Sonidos del Pacífico</span>
+      </h1>
+      <div class="session-date-line anim-fade-up anim-delay-2">
+        <span class="session-date-stamp">14 de Abril, 2025</span>
+        <span class="date-rule"></span>
+        <span class="session-ornament" aria-hidden="true">♩ ♪ ♫</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="session-content">
+
+    <div class="content-cols reveal">
+      <div>
+        <div class="clipping mb-lg">
+          <p class="section-label">Contexto Histórico</p>
+          <p>Desde el campus de Palmira, se exploró la riqueza de la <strong>música andina y del Pacífico Sur</strong>. El grupo <strong>Caucalí</strong> explicó que el tiple, nuestro instrumento nacional, fue históricamente prohibido en el Conservatorio.</p>
+          <div class="dato-highlight">
+            El tiple no se consideraba «académico» — una exclusión que refleja tensiones históricas entre tradición popular y canon institucional.
+          </div>
+          <p>La sesión fue un «laboratorio sonoro» que culminó en la fusión entre Caucalí y Currunal, mostrando el diálogo posible entre territorios musicales distintos.</p>
+        </div>
+
+        <div class="aspects-block">
+          <p class="section-label">Aspectos del Concierto</p>
+          <ul class="aspect-list">
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Campus Palmira — UNAL</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Grupo Caucalí: música andina</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Currulao y bambuco fiestero</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Marimba de chonta y tambora</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Polirritmia 6/8 y 3/4 simultáneos</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Fusión final Caucalí + Currunal</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="deco-composition mb-lg">
+          <div class="deco-composition-circle"></div>
+          <div class="deco-composition-circle"></div>
+          <span class="deco-text-overlay">Pacífico Sur · Marimba de Chonta · Palmira</span>
+        </div>
+
+        <div class="rhythm-visual">
+          <p class="section-label">Polirritmia</p>
+          <div class="rhythm-row">
+            <span class="rhythm-label">6/8</span>
+            <div class="rhythm-beats">
+              <div class="beat beat-strong">1</div>
+              <div class="beat beat-weak">2</div>
+              <div class="beat beat-weak">3</div>
+              <div class="beat beat-strong">4</div>
+              <div class="beat beat-weak">5</div>
+              <div class="beat beat-weak">6</div>
+            </div>
+            <span class="rhythm-name">Currulao</span>
+          </div>
+          <div class="rhythm-row">
+            <span class="rhythm-label">3/4</span>
+            <div class="rhythm-beats">
+              <div class="beat beat-strong">1</div>
+              <div class="beat beat-weak">2</div>
+              <div class="beat beat-weak">3</div>
+            </div>
+            <span class="rhythm-name">Bambuco</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Articulaciones -->
+    <div class="full-section reveal">
+      <p class="section-label mb-md">Las Cuatro Articulaciones</p>
+      <div class="articulations-grid">
+        <div class="articulation-card">
+          <p class="articulation-name">Staccato</p>
+          <p class="articulation-symbol">Símbolo: punto sobre la nota · •</p>
+          <p class="articulation-def">Sonido corto, separado y saltado. Cada nota se interrumpe antes de su valor total, creando un efecto percusivo y vivo.</p>
+        </div>
+        <div class="articulation-card">
+          <p class="articulation-name">Legato</p>
+          <p class="articulation-symbol">Símbolo: ligadura de expresión ⌢</p>
+          <p class="articulation-def">Notas unidas sin cortes entre ellas. El sonido fluye de manera continua y suave, como en el canto de una voz lírica.</p>
+        </div>
+        <div class="articulation-card">
+          <p class="articulation-name">Vibrato</p>
+          <p class="articulation-symbol">Oscilación periódica del sonido</p>
+          <p class="articulation-def">Variación periódica de la altura o intensidad del sonido. Añade calidez expresiva, especialmente en instrumentos de cuerda y voz.</p>
+        </div>
+        <div class="articulation-card">
+          <p class="articulation-name">Portamento</p>
+          <p class="articulation-symbol">Deslizamiento entre alturas</p>
+          <p class="articulation-def">Transición fluida y continua entre dos notas distintas, pasando por todos los sonidos intermedios. Característico del canto folclórico.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-section reveal">
+      <p class="section-label mb-md">Conceptos Musicales</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--sp-md);">
+        <div class="concept-note">
+          <p class="concept-term">Currulao</p>
+          <p class="concept-def">Género musical y dancístico del Pacífico colombiano. Usa marimba de chonta, bombos y cununos como base rítmica esencial.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Marimba de Chonta</p>
+          <p class="concept-def">Instrumento de percusión idiófono andino-pacífico, declarado Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Polirritmia</p>
+          <p class="concept-def">Uso simultáneo de dos o más estructuras rítmicas diferentes. En el bambuco, el 6/8 y el 3/4 conviven creando tensión rítmica constante.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Horizontalidad Musical</p>
+          <p class="concept-def">Principio donde todos los instrumentos de un ensamble tienen igual importancia. Ninguna voz domina: todas dialogan en paridad.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reflection-block reveal">
+      <div class="reflection-inner">
+        <span class="reflection-quote-mark" aria-hidden="true">"</span>
+        <p class="reflection-label">Reflexión Personal</p>
+        <blockquote class="reflection-text">
+          La fusión final entre Caucalí y Currunal fue un «laboratorio sonoro». Ver cómo instrumentos tan distintos logran dialogar me enseñó sobre la horizontalidad y colaboración interdisciplinaria en la música.
+        </blockquote>
+        <div class="pull-quote" style="margin-top: var(--sp-lg);">
+          La colaboración entre distintos instrumentos me enseñó el valor de la horizontalidad musical y el diálogo artístico. El Pacífico no es periferia: es centro de una identidad sonora propia e irrepetible.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-note">Sesión 7 · 14 de Abril · Bitácora Musical UNAL 2025</p>
+    <div class="footer-ornament" aria-hidden="true">♩ ♪ ♫</div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

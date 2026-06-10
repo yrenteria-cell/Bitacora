@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sesión 8 · El Piano como Instrumento Universal — Bitácora Musical</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root { --session-color: var(--s8-color); }
+    .reflection-block::after { background: var(--s8-color); }
+    .session-number-badge { background: var(--s8-color); }
+
+    .hero-visual {
+      position: absolute; right: 5%; top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none; z-index: 1;
+      opacity: 0.05; font-size: 16rem;
+      line-height: 1; font-family: serif; color: var(--s8-color);
+    }
+    .hero-staff {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: flex; flex-direction: column; gap: 9px;
+      padding: 0 0 var(--sp-lg);
+      pointer-events: none; z-index: 0; opacity: 0.06;
+    }
+    .hero-staff span { display: block; height: 1px; background: var(--ink); }
+
+    .clipping {
+      background: var(--paper); box-shadow: var(--shadow-paper);
+      padding: var(--sp-lg); position: relative;
+      border-left: 3px solid var(--s8-color);
+    }
+    .clipping::before {
+      content: ''; position: absolute; top: -9px; left: 30px;
+      width: 55px; height: 18px; background: var(--tape);
+      transform: rotate(-1.5deg);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.07);
+    }
+    .dato-highlight {
+      display: inline-block;
+      background: rgba(74, 40, 96, 0.07);
+      border-left: 2px solid var(--s8-color);
+      padding: var(--sp-sm) var(--sp-md);
+      font-family: var(--font-elegant); font-style: italic;
+      font-size: 1.05rem; color: var(--s8-color);
+      margin: var(--sp-md) 0; line-height: 1.5;
+    }
+    .deco-composition {
+      height: 220px;
+      background: linear-gradient(135deg, #ede8f5 0%, #e2d8f0 50%, #d5c8eb 100%);
+      position: relative; overflow: hidden; box-shadow: var(--shadow-paper);
+    }
+    .deco-composition::before {
+      content: '🎹'; position: absolute; font-size: 6rem;
+      top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2;
+    }
+    .deco-composition-circle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,40,96,0.15) 0%, transparent 70%);
+    }
+    .deco-composition-circle:nth-child(1) { width: 300px; height: 300px; top: -100px; right: -80px; }
+    .deco-composition-circle:nth-child(2) { width: 150px; height: 150px; bottom: -40px; left: 20px; }
+    .deco-text-overlay {
+      position: absolute; bottom: var(--sp-md); left: var(--sp-md); right: var(--sp-md);
+      font-family: var(--font-fell); font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--s8-color); opacity: 0.5;
+    }
+
+    /* Las seis piezas de Parra */
+    .pieces-list {
+      display: flex; flex-direction: column; gap: var(--sp-sm);
+    }
+
+    .piece-item {
+      display: flex; align-items: flex-start; gap: var(--sp-md);
+      padding: var(--sp-md);
+      background: var(--paper); box-shadow: var(--shadow-xs);
+      border-right: 3px solid var(--s8-color);
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+
+    .piece-item:hover {
+      transform: translateX(-4px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .piece-num {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 1.4rem; color: var(--s8-color); opacity: 0.25;
+      line-height: 1; min-width: 2rem; text-align: right;
+    }
+
+    .piece-content { flex: 1; }
+
+    .piece-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.95rem; color: var(--ink);
+    }
+
+    .piece-sub {
+      font-family: var(--font-text); font-size: 0.83rem;
+      color: var(--ink-light); font-style: italic;
+    }
+
+    /* Línea histórica del piano */
+    .piano-history {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-md);
+    }
+
+    .history-card {
+      background: var(--paper); box-shadow: var(--shadow-xs);
+      padding: var(--sp-md);
+      position: relative; overflow: hidden;
+    }
+    .history-card::before {
+      content: attr(data-era);
+      position: absolute; bottom: -0.2em; right: var(--sp-sm);
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 3rem; color: var(--s8-color); opacity: 0.06;
+      line-height: 1; pointer-events: none;
+    }
+
+    .history-era {
+      font-family: var(--font-fell); font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--s8-color); margin-bottom: var(--sp-xs);
+    }
+
+    .history-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.95rem; color: var(--ink); margin-bottom: 0.3em;
+    }
+
+    .history-desc {
+      font-family: var(--font-text); font-size: 0.84rem;
+      color: var(--ink-mid); line-height: 1.55;
+    }
+
+    .pull-quote {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--s8-color);
+      line-height: 1.55; padding: var(--sp-lg) var(--sp-xl);
+      border-top: 1px solid rgba(74,40,96,0.15);
+      border-bottom: 1px solid rgba(74,40,96,0.15);
+      margin: var(--sp-lg) 0; position: relative;
+    }
+    .pull-quote::before {
+      content: '"'; position: absolute; top: -0.3em; left: var(--sp-md);
+      font-size: 4rem; color: var(--s8-color); opacity: 0.15;
+      font-family: var(--font-display); line-height: 1;
+    }
+
+    @media (max-width: 640px) {
+      .piano-history { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav class="session-nav" aria-label="Navegación de sesión">
+    <a href="../index.html" class="nav-back">
+      <span class="nav-back-arrow" aria-hidden="true">←</span>
+      Bitácora Musical
+    </a>
+    <span class="nav-center" aria-hidden="true">♩ Apreciación Musical · UNAL 2025 ♩</span>
+    <div class="nav-pagination">
+      <a href="session7.html">← Anterior</a>
+      <span>·</span>
+      <a href="session14.html">Siguiente →</a>
+    </div>
+  </nav>
+
+  <header class="session-hero">
+    <span class="hero-visual" aria-hidden="true">🎹</span>
+    <div class="hero-staff" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="session-hero-inner">
+      <div class="session-badge anim-fade-up">
+        <div class="session-number-badge" aria-hidden="true">8</div>
+        <span class="session-label-text">Sesión · 21 de Abril</span>
+      </div>
+      <h1 class="session-title anim-fade-up anim-delay-1">
+        El Piano como
+        <span class="session-title-accent">Instrumento Universal</span>
+      </h1>
+      <div class="session-date-line anim-fade-up anim-delay-2">
+        <span class="session-date-stamp">21 de Abril, 2025</span>
+        <span class="date-rule"></span>
+        <span class="session-ornament" aria-hidden="true">♩ ♪ ♫</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="session-content">
+
+    <div class="content-cols reveal">
+      <div>
+        <div class="clipping mb-lg">
+          <p class="section-label">Contexto Histórico</p>
+          <p>Se rastreó la historia del piano desde el <strong>clavicémbalo</strong> hasta su consolidación en el Romanticismo. Compositores como <strong>Chopin</strong> y <strong>Liszt</strong> revolucionaron la técnica.</p>
+          <div class="dato-highlight">
+            Convirtieron al piano en un instrumento capaz de imitar el color de una orquesta completa: desde las cuerdas hasta los vientos, todo cabe en sus 88 teclas.
+          </div>
+          <p>Se discutió la <strong>Improvisación</strong> y el «método del tanteo»: el compositor explora sonoridades directamente en el teclado antes de aplicar la técnica académica formal.</p>
+        </div>
+
+        <div class="aspects-block">
+          <p class="section-label">Aspectos del Concierto</p>
+          <ul class="aspect-list">
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Seis piezas cortas de <strong>Gustavo Parra</strong></li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> «Fotografías musicales» de sentimientos</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Textura polifónica compleja</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Piano como instrumento solista</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Piano como acompañante íntimo</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Exploración del «método del tanteo»</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="deco-composition mb-lg">
+          <div class="deco-composition-circle"></div>
+          <div class="deco-composition-circle"></div>
+          <span class="deco-text-overlay">Gustavo Parra · Seis Piezas · Romanticismo</span>
+        </div>
+
+        <div class="clipping">
+          <p class="section-label">Las Seis Fotografías Musicales</p>
+          <div class="pieces-list">
+            <div class="piece-item">
+              <span class="piece-num">I</span>
+              <div class="piece-content">
+                <p class="piece-title">Pieza I</p>
+                <p class="piece-sub">Retrato de un recuerdo familiar</p>
+              </div>
+            </div>
+            <div class="piece-item">
+              <span class="piece-num">II</span>
+              <div class="piece-content">
+                <p class="piece-title">Pieza II</p>
+                <p class="piece-sub">La melancolía de la distancia</p>
+              </div>
+            </div>
+            <div class="piece-item">
+              <span class="piece-num">III</span>
+              <div class="piece-content">
+                <p class="piece-title">Pieza III</p>
+                <p class="piece-sub">Instantánea de alegría íntima</p>
+              </div>
+            </div>
+            <div class="piece-item">
+              <span class="piece-num">IV–VI</span>
+              <div class="piece-content">
+                <p class="piece-title">Piezas IV, V y VI</p>
+                <p class="piece-sub">Variaciones sobre emociones personales y familiares</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Historia del piano -->
+    <div class="full-section reveal">
+      <p class="section-label mb-md">Evolución del Piano</p>
+      <div class="piano-history">
+        <div class="history-card" data-era="XVII">
+          <p class="history-era">Siglo XVII</p>
+          <p class="history-title">Clavicémbalo</p>
+          <p class="history-desc">Predecesor del piano. Las cuerdas se pulsan con plumas, sin gradación de dinámica. Puro color timbre, sin matices de intensidad.</p>
+        </div>
+        <div class="history-card" data-era="XVIII">
+          <p class="history-era">Siglo XVIII</p>
+          <p class="history-title">Pianoforte</p>
+          <p class="history-desc">Bartolomeo Cristofori inventa el piano «de tecla suave y fuerte». Por primera vez el intérprete controla la intensidad con el tacto.</p>
+        </div>
+        <div class="history-card" data-era="XIX">
+          <p class="history-era">Siglo XIX</p>
+          <p class="history-title">Piano Romántico</p>
+          <p class="history-desc">Chopin y Liszt transforman el instrumento. Virtuosismo extremo, planos sonoros múltiples, polifonía compleja. La orquesta en un solo cuerpo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-section reveal">
+      <p class="section-label mb-md">Conceptos Musicales</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--sp-md);">
+        <div class="concept-note">
+          <p class="concept-term">Improvisación</p>
+          <p class="concept-def">Creación musical espontánea en tiempo real. Requiere dominio técnico profundo para que la libertad expresiva no caiga en el caos.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Método del Tanteo</p>
+          <p class="concept-def">Exploración directa en el instrumento antes de formalizar. Tocar para descubrir: el teclado como cuaderno de bocetos sonoros.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Textura Polifónica</p>
+          <p class="concept-def">Múltiples líneas melódicas independientes simultáneas. El piano puede sostener melodía, contracanto, acompañamiento y bajo a la vez.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Fotografía Musical</p>
+          <p class="concept-def">Pieza breve que captura un estado emocional o momento específico, como una imagen sonora instantánea de la experiencia humana.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reflection-block reveal">
+      <div class="reflection-inner">
+        <span class="reflection-quote-mark" aria-hidden="true">"</span>
+        <p class="reflection-label">Reflexión Personal</p>
+        <blockquote class="reflection-text">
+          Descubrir que el piano puede ser tanto un instrumento solista virtuoso como un acompañante humilde me hizo apreciar su versatilidad universal en todos los géneros.
+        </blockquote>
+        <div class="pull-quote" style="margin-top: var(--sp-lg);">
+          Descubrí la enorme versatilidad del piano como instrumento solista y acompañante. En sus 88 teclas cabe el universo musical entero: desde Bach hasta el jazz, desde la canción de cuna hasta la gran sinfonía.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-note">Sesión 8 · 21 de Abril · Bitácora Musical UNAL 2025</p>
+    <div class="footer-ornament" aria-hidden="true">♩ ♪ ♫</div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

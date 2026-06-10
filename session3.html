@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sesión 3 · Voces, Identidad y Tradición — Bitácora Musical</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root { --session-color: var(--s3-color); }
+    .reflection-block::after { background: var(--s3-color); }
+    .session-number-badge { background: var(--s3-color); }
+
+    .hero-visual {
+      position: absolute;
+      right: 5%; top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none; z-index: 1;
+      opacity: 0.055; font-size: 16rem;
+      line-height: 1; font-family: serif;
+      color: var(--s3-color);
+    }
+
+    .hero-staff {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: flex; flex-direction: column; gap: 9px;
+      padding: 0 0 var(--sp-lg);
+      pointer-events: none; z-index: 0; opacity: 0.06;
+    }
+    .hero-staff span { display: block; height: 1px; background: var(--ink); }
+
+    .clipping {
+      background: var(--paper);
+      box-shadow: var(--shadow-paper);
+      padding: var(--sp-lg);
+      position: relative;
+      border-left: 3px solid var(--s3-color);
+    }
+    .clipping::before {
+      content: '';
+      position: absolute; top: -9px; left: 30px;
+      width: 55px; height: 18px;
+      background: var(--tape);
+      transform: rotate(-1.5deg);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.07);
+    }
+
+    .dato-highlight {
+      display: inline-block;
+      background: rgba(42, 68, 40, 0.07);
+      border-left: 2px solid var(--s3-color);
+      padding: var(--sp-sm) var(--sp-md);
+      font-family: var(--font-elegant);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--s3-color);
+      margin: var(--sp-md) 0;
+      line-height: 1.5;
+    }
+
+    .deco-composition {
+      height: 220px;
+      background: linear-gradient(135deg, #e8f0e8 0%, #dde8d5 50%, #d0dfc8 100%);
+      position: relative; overflow: hidden;
+      box-shadow: var(--shadow-paper);
+    }
+    .deco-composition::before {
+      content: '🎤';
+      position: absolute; font-size: 6rem;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.2;
+    }
+    .deco-composition-circle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(42,68,40,0.15) 0%, transparent 70%);
+    }
+    .deco-composition-circle:nth-child(1) { width: 300px; height: 300px; top: -100px; right: -80px; }
+    .deco-composition-circle:nth-child(2) { width: 150px; height: 150px; bottom: -40px; left: 20px; }
+    .deco-text-overlay {
+      position: absolute; bottom: var(--sp-md); left: var(--sp-md); right: var(--sp-md);
+      font-family: var(--font-fell); font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--s3-color); opacity: 0.5;
+    }
+
+    /* Grid de voces FAG */
+    .fag-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-md);
+    }
+
+    .voice-card {
+      background: var(--paper);
+      box-shadow: var(--shadow-xs);
+      padding: var(--sp-md);
+      border-top: 3px solid var(--s3-color);
+      position: relative;
+    }
+
+    .voice-type {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--s3-color);
+      margin-bottom: 0.2em;
+    }
+
+    .voice-desc {
+      font-family: var(--font-text);
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      line-height: 1.55;
+    }
+
+    .pull-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: var(--s3-color);
+      line-height: 1.55;
+      padding: var(--sp-lg) var(--sp-xl);
+      border-top: 1px solid rgba(42,68,40,0.15);
+      border-bottom: 1px solid rgba(42,68,40,0.15);
+      margin: var(--sp-lg) 0;
+      position: relative;
+    }
+    .pull-quote::before {
+      content: '"';
+      position: absolute; top: -0.3em; left: var(--sp-md);
+      font-size: 4rem; color: var(--s3-color); opacity: 0.15;
+      font-family: var(--font-display); line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav class="session-nav" aria-label="Navegación de sesión">
+    <a href="../index.html" class="nav-back">
+      <span class="nav-back-arrow" aria-hidden="true">←</span>
+      Bitácora Musical
+    </a>
+    <span class="nav-center" aria-hidden="true">♩ Apreciación Musical · UNAL 2025 ♩</span>
+    <div class="nav-pagination">
+      <a href="session1.html">← Anterior</a>
+      <span>·</span>
+      <a href="session4.html">Siguiente →</a>
+    </div>
+  </nav>
+
+  <header class="session-hero">
+    <span class="hero-visual" aria-hidden="true">🎤</span>
+    <div class="hero-staff" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="session-hero-inner">
+      <div class="session-badge anim-fade-up">
+        <div class="session-number-badge" aria-hidden="true">3</div>
+        <span class="session-label-text">Sesión · 17 de Febrero</span>
+      </div>
+      <h1 class="session-title anim-fade-up anim-delay-1">
+        Voces, Identidad
+        <span class="session-title-accent">y Tradición</span>
+      </h1>
+      <div class="session-date-line anim-fade-up anim-delay-2">
+        <span class="session-date-stamp">17 de Febrero, 2025</span>
+        <span class="date-rule"></span>
+        <span class="session-ornament" aria-hidden="true">♩ ♪ ♫</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="session-content">
+
+    <div class="content-cols reveal">
+      <div>
+        <div class="clipping mb-lg">
+          <p class="section-label">Contexto Histórico</p>
+          <p>El tenor <strong>David Guzmán</strong> presentó su investigación sobre el rescate de la ópera en español, específicamente <em>El Caminante</em> de Eduardo Sánchez de Fuentes (1921).</p>
+          <div class="dato-highlight">
+            Esta obra, estrenada por el legendario <em>Tito Schipa</em>, se consideraba perdida hasta que Guzmán recuperó el manuscrito en la biblioteca de Harvard.
+          </div>
+          <p>El formato fue de recital de voz y piano con un lenguaje tonal romántico similar al verismo italiano, tratando temas de «sanación personal».</p>
+        </div>
+
+        <div class="clipping">
+          <p class="section-label">Influencia del Verismo</p>
+          <p>La ópera <em>El Caminante</em> utiliza recursos expresivos del verismo italiano para construir un lenguaje dramático cargado de emoción, inusual para las tragedias de la época.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="deco-composition mb-lg">
+          <div class="deco-composition-circle"></div>
+          <div class="deco-composition-circle"></div>
+          <span class="deco-text-overlay">Recital · Voz y Piano · Verismo</span>
+        </div>
+
+        <div class="aspects-block">
+          <p class="section-label">Aspectos del Concierto</p>
+          <ul class="aspect-list">
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Formato: Recital de voz y piano</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Investigación sobre ópera en español</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Recuperación de manuscrito en Harvard</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Lenguaje tonal romántico</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Influencia del verismo italiano</li>
+            <li><span class="aspect-bullet" aria-hidden="true">♩</span> Ejercicios rítmicos de cha-cha-chá</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sistema FAG de Voces -->
+    <div class="full-section reveal">
+      <p class="section-label mb-md">Sistema FAG · Clasificación Vocal</p>
+      <div class="fag-grid">
+        <div class="voice-card">
+          <p class="voice-type">Bajo</p>
+          <p class="voice-desc">La voz más grave masculina. Retumbante y profunda, transmite autoridad y misterio en los grandes roles de ópera.</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-type">Tenor</p>
+          <p class="voice-desc">La voz aguda masculina. Protagonista lírico por excelencia, asociada con el romanticismo y los grandes héroes operáticos.</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-type">Contralto</p>
+          <p class="voice-desc">La voz más grave femenina. Rica en armónicos graves, con una calidez expresiva única y gran versatilidad dramática.</p>
+        </div>
+        <div class="voice-card">
+          <p class="voice-type">Soprano</p>
+          <p class="voice-desc">La voz aguda femenina. La «diva» del repertorio operático, con registros que alcanzan alturas de gran exigencia técnica.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conceptos Musicales -->
+    <div class="full-section reveal">
+      <p class="section-label mb-md">Conceptos Musicales</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--sp-md);">
+        <div class="concept-note">
+          <p class="concept-term">Sistema FAG</p>
+          <p class="concept-def">Clasificación de voces según su Tesitura (rango de altura confortable) y color tímbrico: Fach en alemán, «voz» en operística internacional.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Leitmotiv</p>
+          <p class="concept-def">Motivo musical recurrente que representa a un personaje, emoción o situación dramática específica. Wagner lo sistematizó en el siglo XIX.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Tesitura</p>
+          <p class="concept-def">Rango de alturas dentro del cual una voz o instrumento puede cantar o sonar con comodidad y plenitud expresiva.</p>
+        </div>
+        <div class="concept-note">
+          <p class="concept-term">Verismo</p>
+          <p class="concept-def">Corriente operática italiana del siglo XIX que retrata personajes y situaciones cotidianas con realismo dramático y emocional intenso.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reflexión -->
+    <div class="reflection-block reveal">
+      <div class="reflection-inner">
+        <span class="reflection-quote-mark" aria-hidden="true">"</span>
+        <p class="reflection-label">Reflexión Personal</p>
+        <blockquote class="reflection-text">
+          Participar en los ejercicios de ritmo de «cha-cha-chá» con negras y corcheas me permitió entender que la música académica también nace del cuerpo y del movimiento coordinado.
+        </blockquote>
+        <div class="pull-quote" style="margin-top: var(--sp-lg);">
+          Comprendí que la música académica también nace del cuerpo, el ritmo y el movimiento coordinado. La voz no es solo instrumento: es identidad, memoria y tradición encarnada.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-note">Sesión 3 · 17 de Febrero · Bitácora Musical UNAL 2025</p>
+    <div class="footer-ornament" aria-hidden="true">♩ ♪ ♫</div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
